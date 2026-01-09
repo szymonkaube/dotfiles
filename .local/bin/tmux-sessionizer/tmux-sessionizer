@@ -1,0 +1,53 @@
+#!/usr/bin/env bash
+
+# --- CONFIGURATION ---
+# Add your project folders here
+SEARCH_PATHS=(~/personal ~/aster ~/.config)
+# ---------------------
+
+if [[ $# -eq 1 ]]; then
+    selected=$1
+else
+    # 1. Get running tmux sessions (excluding the current one)
+    # We use grep -v to remove the current session from the list so you don't switch to yourself.
+    if [[ -n "$TMUX" ]]; then
+        current_session=$(tmux display-message -p '#S')
+        running_sessions=$(tmux list-sessions -F "#{session_name}" 2>/dev/null | grep -v "^$current_session$")
+    else
+        running_sessions=$(tmux list-sessions -F "#{session_name}" 2>/dev/null)
+    fi
+
+    # 2. Get directories from your search paths
+    # -mindepth 1 -maxdepth 1 ensures we only look at direct children
+    candidate_dirs=$(find "${SEARCH_PATHS[@]}" -mindepth 1 -maxdepth 1 -type d 2>/dev/null)
+
+    # 3. Combine them and pipe to FZF
+    # We put running_sessions first so they appear at the top
+    selected=$(echo -e "$running_sessions\n$candidate_dirs" | fzf)
+fi
+
+if [[ -z "$selected" ]]; then
+    exit 0
+fi
+
+# Determine if the selection is a Directory or a Session Name
+if [[ -d "$selected" ]]; then
+    # It's a directory -> Extract name and create session
+    selected_name=$(basename "$selected" | tr . _)
+    selected_path="$selected"
+    
+    # Check if session already exists for this folder
+    if ! tmux has-session -t="$selected_name" 2> /dev/null; then
+        tmux new-session -ds "$selected_name" -c "$selected_path"
+    fi
+else
+    # It's not a directory -> It must be an existing session name from the history list
+    selected_name="$selected"
+fi
+
+# Switch to the session
+if [[ -z "$TMUX" ]]; then
+    exec tmux attach-session -t "$selected_name"
+else
+    tmux switch-client -t "$selected_name"
+fi
