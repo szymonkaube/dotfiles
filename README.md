@@ -49,9 +49,10 @@ If step 3 gives an error like `error: The following untracked working tree files
 **The Fix:**
 You need to move the existing default files out of the way. You can run this quick snippet to back them up:
 ```bash
-mkdir -p .config-backup && \
-config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | \
-xargs -I{} mv {} .config-backup/{}
+config checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | while read f; do
+    mkdir -p ".config-backup/$(dirname "$f")"
+    mv "$f" ".config-backup/$f"
+done
 ```
 *This script looks at the error message, finds the conflicting files, and moves them to a `.config-backup` folder.*
 
