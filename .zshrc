@@ -4,6 +4,10 @@ SAVEHIST=1000
 
 setopt notify
 
+# bash style word definition (stop at /, ., etc when deleting)
+autoload -U select-word-style
+select-word-style bash
+
 # emacs editing configuration
 bindkey -e
 

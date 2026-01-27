@@ -10,8 +10,23 @@ return {
       workspaces = {
         {
           name = "personal",
-          path = "~/personal/git_baza"
+          path = "~/personal/obsidian"
         }
+      },
+
+      callbacks = {
+        enter_note = function(self, note)
+          -- overwrite <leader>sf to use Obsidian's alias-aware search
+          vim.keymap.set("n", "<leader>sf", "<cmd>Obsidian search<cr>", {
+            buffer = true,
+            desc = "Obsidian Search (includes Aliases)",
+          })
+
+          -- map 'smart_action' to something handy
+          vim.keymap.set("n", "<cr>", function()
+            return require("obsidian").util.smart_action()
+          end, { buffer = true, expr = true })
+        end,
       },
 
       new_notes_location = "notes_subdir",
@@ -20,6 +35,7 @@ return {
       -- render-markdown handles markdown rendering
       ui = { enable = false },
 
+      -- open image from link (wsl)
       follow_img_func = function(img)
         if vim.v.shell_error == 0 then
           local win_path = string.gsub(vim.fn.system({ 'wslpath', '-w', img }), '\n', '')
@@ -29,6 +45,7 @@ return {
         end
       end,
 
+      -- note ids are file names
       note_id_func = function(title)
         local suffix = ""
         if title ~= nil then

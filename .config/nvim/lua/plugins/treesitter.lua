@@ -4,7 +4,14 @@ return {
     build = ':TSUpdate',
     config = function()
       require 'nvim-treesitter.configs'.setup {
-        ensure_installed = { 'bash', 'javascript', 'typescript', 'lua', 'php', 'python' },
+        ensure_installed = {
+          'bash',
+          'html',
+          'javascript', 'typescript',
+          'lua',
+          'php', 'blade',
+          'python',
+        },
         highlight = {
           enable = true,
           -- Or use a function for more flexibility, e.g. to disable slow treesitter highlight for large files

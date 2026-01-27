@@ -28,6 +28,9 @@ vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.conceallevel = 2
 
+-- block cursor in insert mode
+vim.opt.guicursor = "i:block"
+
 vim.opt.termguicolors = true
 vim.diagnostic.config({
   float = {
