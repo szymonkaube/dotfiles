@@ -1,0 +1,66 @@
+@import "/home/szymon/.cache/wal/colors-waybar.css";
+
+@define-color primary @background;
+@define-color secondary @color5;
+
+* {
+  border: none;
+  color: @secondary;
+  border-radius: 0;
+  font-family: "Monaco", "Terminus", "Courier Prime", monospace; 
+  font-size: 15px;
+}
+
+window#waybar {
+  background-color: @primary;
+}
+
+tooltip {
+  background-color: @primary;
+  border: 1px solid @secondary;
+}
+
+/* =============================================
+ * |                WORKSPACES                 |
+ * ============================================= */
+#workspaces {
+}
+
+#workspaces button {
+  background-color: transparent;
+  color: @secondary;
+
+  padding: 0 8px;
+}
+
+#workspaces button.focused,
+#workspaces button.focused label,
+#workspaces button.active,
+#workspaces button.active label {
+  background-color: @secondary;
+  color: @primary;
+}
+
+#workspaces button:hover,
+#workspaces button:hover label {
+  background: @secondary;
+  color: @primary;
+
+  transition: none;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+/* =============================================
+ * |              MODULES RIGHT                |
+ * ============================================= */
+.modules-right {
+  margin: 0 5px;
+}
+
+.modules-right > widget + widget > * {
+  margin-left: 15px;
+  padding-left: 15px;
+  border-left: 1px solid @secondary;
+}
+

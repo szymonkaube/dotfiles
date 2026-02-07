@@ -1,0 +1,25 @@
+#!/bin/bash
+
+# run pywal
+wal -i "$1"
+
+# set the wallpaper (using swaybg)
+pkill swaybg
+swaybg -i $(cat ~/.cache/wal/wal) -m fill &
+
+# refresh Waybar colors
+pkill -USR2 waybar
+
+# refresh Sway colors
+swaymsg reload
+
+# source tmux conf
+tmux source-file ~/.config/tmux/tmux.conf
+
+# kill ghostty in order to force config reload
+# pkill -HUP ghostty
+
+cp "$HOME/.cache/wal/dunst_colors.conf" "$HOME/.config/dunst/dunstrc.d/colors.conf"
+dunstctl reload
+
+notify-send "Wallpaper changed" "pywal theme changed"

@@ -1,0 +1,53 @@
+{
+  "layer": "top",
+  "position": "top",
+  "height": 0,
+  "modules-left": ["sway/workspaces"],
+  "modules-center": [],
+  "modules-right": [
+    "tray",
+    "pulseaudio",
+    "backlight",
+    "battery",
+    "clock"
+  ],
+
+  "sway/workspaces": {
+    "disable-scroll": true,
+    "all-outputs": true,
+    "format": "{name}"
+  },
+
+  "clock": {
+    "format": "{:%A, %B %d  %H:%M}",
+    "tooltip-format": "{:%A, %B %d  %H:%M}",
+  },
+
+  "battery": {
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "format": "BAT {capacity}%",
+    "tooltip-format": "{time}",
+    "format-charging": "CHR {capacity}%+", 
+    "format-plugged": "CHR {capacity}%+",
+    "format-alt": "{time}",
+  },
+
+  "backlight": {
+    "format": "BRT {percent}%",
+    "on-scroll-up": "brightnessctl set 5%+",
+    "on-scroll-down": "brightnessctl -n set 5%-",
+    "tooltip": false
+  },
+
+  "pulseaudio": {
+    "format": "VOL {volume}%",
+    "format-muted": "MUTE",
+    "format-bluetooth": "BT {volume}%",
+    "format-bluetooth-muted": "BT MUTE",
+    "on-click": "pavucontrol",
+    "tooltip": false
+  },
+}
