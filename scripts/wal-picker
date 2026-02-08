@@ -1,0 +1,15 @@
+#!/bin/bash
+
+export PATH=$PATH:/home/szymon/.local/bin:/home/szymon/scripts
+
+WALLPAPER_DIR="$HOME/Pictures/wallpapers"
+SELECTED=$(find "$WALLPAPER_DIR" -type f | fzf \
+  --layout=reverse \
+  --preview-window=right:60% \
+  --preview 'printf "\033_Ga=d\033\\"; chafa --format kitty --size 50x50 {}')
+
+if [ -n "$SELECTED" ]; then
+  wal-set "$SELECTED" > /dev/null 2>&1 * disown
+fi
+
+exit

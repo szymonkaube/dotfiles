@@ -1,20 +1,27 @@
 #!/bin/bash
 
+export PATH=$PATH:/home/szymon/.local/bin
+
+img="${1:?Error: Please provide a path to an image}"
+
 # run pywal
-wal -i "$1"
-
-# set the wallpaper (using swaybg)
-pkill swaybg
-swaybg -i $(cat ~/.cache/wal/wal) -m fill &
-
-# refresh Waybar colors
-pkill -USR2 waybar
+wal -i "$img"
 
 # refresh Sway colors
 swaymsg reload
 
+# set the wallpaper (using swaybg)
+# pkill swaybg
+# swaybg -i $(cat ~/.cache/wal/wal) -m fill &
+swaymsg "output * bg `cat $HOME/.cache/wal/wal` fill"
+
+# refresh Waybar colors
+pkill -USR2 waybar
+
 # source tmux conf
-tmux source-file ~/.config/tmux/tmux.conf
+if pgrep -x "tmux" > /dev/null; then
+    tmux source-file "$HOME/.config/tmux/tmux.conf"
+fi
 
 # kill ghostty in order to force config reload
 # pkill -HUP ghostty

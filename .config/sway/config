@@ -52,6 +52,7 @@ set $menu $rofi_cmd -show combi -combi-modes drun#run -modes combi
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 # Requires: desktop-backgrounds-compat, swaybg, jxl-pixbuf-loader
 output * bg `cat $HOME/.cache/wal/wal` fill
+
 #
 # Example configuration:
 #
@@ -130,7 +131,11 @@ exec_always {
 
     # Exit sway (logs you out of your Wayland session)
     bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -B 'Yes, exit sway' 'swaymsg exit'
-#
+
+    # wal-picker
+    bindsym $mod+Shift+w exec ghostty --title="wallpaper-picker" --class="wallpaper-picker" -e ~/scripts/wal-picker
+    for_window [title="wallpaper-picker"] floating enable, resize set 1200 600, move position center
+
 # Moving around:
 #
     # Move your focus around
