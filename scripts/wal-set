@@ -29,4 +29,4 @@ fi
 cp "$HOME/.cache/wal/dunst_colors.conf" "$HOME/.config/dunst/dunstrc.d/colors.conf"
 dunstctl reload
 
-notify-send "Wallpaper changed" "pywal theme changed"
+notify-send -i "$(< "${HOME}/.cache/wal/wal")" "Wallpaper changed" "pywal theme changed"
