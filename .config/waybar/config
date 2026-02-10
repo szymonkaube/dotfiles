@@ -9,8 +9,16 @@
     "pulseaudio",
     "backlight",
     "battery",
+    "custom/weather",
     "clock"
   ],
+
+  "custom/weather": {
+    "return-type": "json",
+    "interval": 900,
+    "exec": "~/.config/waybar/scripts/weather.sh",
+    "exec-if": "ping -c 1 8.8.8.8"
+  },
 
   "sway/workspaces": {
     "disable-scroll": true,
