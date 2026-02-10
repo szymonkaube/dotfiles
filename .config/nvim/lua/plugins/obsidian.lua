@@ -30,7 +30,7 @@ return {
       },
 
       new_notes_location = "notes_subdir",
-      notes_subdir = "001 Inbox",
+      notes_subdir = "001-inbox",
 
       -- render-markdown handles markdown rendering
       ui = { enable = false },
