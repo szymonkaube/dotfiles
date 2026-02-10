@@ -7,8 +7,8 @@
 # Import pywal colors
 include ~/.cache/wal/colors-sway
 
-default_border pixel 1
-default_floating_border pixel 1
+default_border pixel 2
+default_floating_border pixel 2
 
 #                       border    bg        text      ind       child border
 client.focused          $color5   $background $color15  $color5   $color5
