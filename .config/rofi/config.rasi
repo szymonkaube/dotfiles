@@ -1,1 +1,7 @@
 @import "~/.cache/wal/colors-rofi-dark"
+
+window {
+    border: 1px;
+    border-color: @foreground;
+    width: 35%;
+}
