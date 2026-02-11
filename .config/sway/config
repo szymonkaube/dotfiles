@@ -134,7 +134,7 @@ exec_always {
 
     # wal-picker
     bindsym $mod+Shift+w exec ghostty --title="wallpaper-picker" --class="wallpaper-picker" -e ~/scripts/wal-picker
-    for_window [title="wallpaper-picker"] floating enable, resize set 1200 600, move position center
+    for_window [title="wallpaper-picker"] floating enable, resize set 1400 450, move position center
 
 # Moving around:
 #
