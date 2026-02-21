@@ -6,7 +6,7 @@ require('lazy').setup {
 	require 'plugins/completion',
 	require 'plugins/telescope',
 	require 'plugins/git-signs',
-	require 'plugins/which-key',
+	-- require 'plugins/which-key',
 	require 'plugins/obsidian',
 	require 'plugins/render-markdown',
 	require 'plugins/zen-mode',

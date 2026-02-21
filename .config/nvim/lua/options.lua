@@ -1,6 +1,6 @@
 vim.opt.number = true
 vim.opt.relativenumber = true
-vim.opt.winborder = 'rounded'
+vim.opt.winborder = 'single'
 vim.opt.mouse = 'a'
 vim.opt.expandtab = true -- use spaces instead of tabs
 vim.opt.tabstop = 2
@@ -34,7 +34,7 @@ vim.opt.guicursor = "i:block"
 vim.opt.termguicolors = true
 vim.diagnostic.config({
   float = {
-    border = "rounded",
+    border = "single",
   }
 })
 
