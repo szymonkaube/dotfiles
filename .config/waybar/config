@@ -5,6 +5,7 @@
   "modules-left": ["sway/workspaces"],
   "modules-center": [],
   "modules-right": [
+    "custom/mediaplayer",
     "tray",
     "pulseaudio",
     "backlight",
@@ -18,6 +19,17 @@
     "interval": 900,
     "exec": "~/.config/waybar/scripts/weather.sh",
     "exec-if": "ping -c 1 8.8.8.8"
+  },
+
+  "custom/mediaplayer": {
+    "format": "{icon} {text}",
+    "return-type": "json",
+    "format-icons": {
+      "Playing": "<span>󰐊</span>",
+      "Paused": "<span>󰏤</span>"
+    },
+    "exec": "~/.config/waybar/scripts/mediaplayer.sh",
+    "on-click": "playerctl -p $(cat /tmp/waybar_current_player) play-pause"
   },
 
   "sway/workspaces": {
