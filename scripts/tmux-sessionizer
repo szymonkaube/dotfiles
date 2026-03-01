@@ -2,7 +2,7 @@
 
 # --- CONFIGURATION ---
 # Add your project folders here
-SEARCH_PATHS=(~/personal ~/work ~/work/aster ~/work/netsolution ~/.config)
+SEARCH_PATHS=(~/personal ~/work ~/work/aster ~/work/netsolution ~/.config ~/scripts)
 # ---------------------
 
 if [[ $# -eq 1 ]]; then
